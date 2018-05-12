@@ -2,17 +2,15 @@ var accounts;
 var factoryInstance;
 var defaultGas = 4700000;
 var userAccounts = [];
-
 var aggregatorAccount, farmerAccount, warehouseAccount, currentAccount;
-
 var hostName = "localhost";
 var ipfs = window.IpfsApi(hostName, 5001);
 
-function deployCompetitionFactory() {
-    CompetitionFactory.new({ from: currentAccount, gas: defaultGas }).then(
+function deployProduceFactory() {
+    ProduceFactory.new({ from: currentAccount, gas: defaultGas }).then(
         function(facInstance) {
             factoryInstance = facInstance;
-            $("#deployContractSuccess").html('<i class="fa fa-check"</i>' + " Competition Factory Contract mined!");
+            $("#deployContractSuccess").html('<i class="fa fa-check"</i>' + " Produce Tracker Contract mined!");
             initializeFactoryEvents();            
         });
 }
@@ -24,25 +22,24 @@ function initializeFactoryEvents() {
             console.log("Error: " + error);
         } else {
             $('#audittrailbody').append('<tr><td>' + result.event +
-                '</td><td>' + parseInt(result.args._competitionId) +
+                '</td><td>' + parseInt(result.args._produceId) +
                 '</td><td>' + result.args._person +
                 '</td><td>' + "<a target='_blank' href='http://" + hostName + ":8080/ipfs/" + result.args._hash + "'>" + result.args._hash + "</a>" +
-                '</td><td>' + result.args._cost +
                 '</td><td>' + Date(result.args._time) + '</td>');
         }
     });
 }
 
-function readCompetitionById(_competitionId) {
-    document.getElementById("competitionId").style.display = "block";
-    document.getElementById('theCompetitionId').innerHTML = _competitionId;
-    factoryInstance.getPrize.call(_competitionId).then(function(data) {
-        document.getElementById('thePrize').innerHTML = data.toString(10);
+function readProduceById(_produceId) {
+    document.getElementById("produceId").style.display = "block";
+    document.getElementById('theProduceId').innerHTML = _produceId;
+    factoryInstance.getQuantity.call(_produceId).then(function(data) {
+        document.getElementById('theQuantity').innerHTML = data.toString(10);
       
     });
-    factoryInstance.getDeadline.call(_competitionId).then(function(data) {
-        //document.getElementById('theDeadline').innerHTML = data.toString(10);
-        $("#theDeadline").html(moment.unix(data.c[0]).format("MM/DD/YYYY"));
+    factoryInstance.getDate.call(_produceId).then(function(data) {
+        //document.getElementById('theDate').innerHTML = data.toString(10);
+        $("#theDate").html(moment.unix(data.c[0]).format("MM/DD/YYYY"));
     });    
 }
 
@@ -58,8 +55,8 @@ function store() {
 
             res.forEach(function(file) {
                 console.log('successfully stored', file);
-                submitPhysicianDataset(file.path);
-                readCompetitionById(0);
+                submitQRCode(file.path);
+                readProduceById(0);
                 display(file.path);
             })
         })
@@ -67,27 +64,16 @@ function store() {
     reader.readAsArrayBuffer(file)
 }
 
-function submitPhysicianDataset(docHash) {
+function submitQRCode(docHash) {
     console.log(docHash);
-    var prize = $("#inputPrize").val();
-    var deadline = $("#inputDeadline").val();
-    var deadlineTs = (moment(deadline, "M/D/YYYY").valueOf()) / 1000;
-    factoryInstance.createCompetition.sendTransaction(docHash, deadlineTs, {from:farmerAccount, gas:defaultGas, value:prize}).then(
+    var quantity = $("#inputQuantity").val();
+    var myDate = $("#inputDate").val();
+    var dateTs = (moment(myDate, "M/D/YYYY").valueOf()) / 1000;
+    factoryInstance.createProduce.sendTransaction(docHash, dateTs, quantity, {from:farmerAccount, gas:defaultGas}).then(
         function(txHash) {
-            console.log("Submitting dataset hash into competition ", txHash);
+            console.log("Submitting qr code hash with produce ", txHash);
             $("#uploadIpfsSuccess").html('<i class="fa fa-check"</i>' + ' IPFS Dataset Hash ' + docHash + " added to IPFS");
             $("#uploadDatasetSuccess").html('<i class="fa fa-check"</i>' + ' Transaction ' + txHash + " added to the blockchain");
-        }
-    );
-}
-
-function submitScientistDataset(docHash) {
-    console.log(docHash);
-    factoryInstance.submitIPFSHash.sendTransaction(docHash, 0, { from: aggregatorAccount, gas: defaultGas }).then(
-        function(txHash) {
-            console.log("Submitting dataset hash into competition ", txHash);
-            $("#uploadIpfsSuccess2").html('<i class="fa fa-check"</i>' + ' IPFS Predictions Hash ' + docHash + " added to IPFS");
-            $("#uploadDatasetSuccess2").html('<i class="fa fa-check"</i>' + ' Transaction ' + txHash + " added to the blockchain");
         }
     );
 }
@@ -97,23 +83,23 @@ function display(hash) {
         "<a target='_blank' href='http://" + hostName + ":8080/ipfs/" + hash + "'>" + hash + "</a>";
 }
 
-function doPayouts() {
-    factoryInstance.executePayouts.sendTransaction(0, aggregatorAccount, { from: farmerAccount, gas: defaultGas}).then(
+function doDeliveries() {
+    factoryInstance.executeDelivery.sendTransaction(0, warehouseAccount, { from: aggregatorAccount, gas: defaultGas}).then(
         function(txHash) {
-            console.log("Doing payouts ", txHash);
-            $("#payoutSuccess").html('<i class="fa fa-check"</i>' + ' Payouts ' + txHash + " added to the blockchain");
+            console.log("Doing aggregation and sending to warehouse ", txHash);
+            $("#aggregationSuccess").html('<i class="fa fa-check"</i>' + ' Aggregation ' + txHash + " added to the blockchain");
         }
     );
-    factoryInstance.getPrize.call(0).then(function(data) {
-        $('#competitionsbody').append('</td><td>' + parseInt(0) + '</td><td>' + data.toString(10));
+    factoryInstance.getQRCode.call(0).then(function(data) {
+      $('#producesbody').append('</td><td>' + parseInt(0) + '</td><td>' + data.toString(10));
     });
-    factoryInstance.getWinner.call(0).then(function(data) {
-        $('#competitionsbody').append('</td><td>' + data.toString(10) + '</td>');
+    factoryInstance.getFarmer.call(0).then(function(data) {
+        $('#producesbody').append('</td><td>' + data.toString(10) + '</td>');
     });
 }
 
 $(function() {
-    $("#inputDeadline").datepicker();    
+    $("#inputDate").datepicker();    
 });
 
 function getBlockDetails(blockNo) {
@@ -203,11 +189,11 @@ window.onload = function() {
     });
 
     $("#deployContract").click(function() {
-        deployCompetitionFactory();
+        deployProduceFactory();
     });
 
-    $("#doPayouts").click(function() {
-        doPayouts();
+    $("#doDeliveries").click(function() {
+        doDeliveries();
     });
 
     $("#modalClose").click(function() {

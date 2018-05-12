@@ -41,9 +41,9 @@
         </div>
     </div>
     <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#sectionA" id="phy_tab"><i class="fa fa-user-md"></i> Farmer</a></li>
-        <li><a data-toggle="tab" href="#sectionB" id="sci_tab"><i class="fa fa-user"></i> Aggregator</a></li>
-        <li><a data-toggle="tab" href="#sectionC" id="lea_tab"><i class="fa fa-trophy"></i> Warehouse</a></li>
+        <li class="active"><a data-toggle="tab" href="#sectionA" id="far_tab"><i class="fa fa-shopping-basket"></i> Farmer</a></li>
+        <li><a data-toggle="tab" href="#sectionB" id="agg_tab"><i class="fa fa-sitemap"></i> Aggregator</a></li>
+        <li><a data-toggle="tab" href="#sectionC" id="war_tab"><i class="fa fa-university"></i> Warehouse</a></li>
         <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="fa fa-link"></i>  Blockchain View <b class="caret"></b></a>
             <ul class="dropdown-menu">
@@ -65,7 +65,7 @@
                     <div class="panel-heading">
                         <h4 class="panel-title">
         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-          Create Produce Tracker
+          Produce Tracker
         </a>
       </h4>
                     </div>
@@ -73,17 +73,17 @@
                         <div class="panel-body">
                             <div class="demo-content bg-alt">
                                     <div>
-                                            <button id="deployContract" class="btn btn-primary">Initiate Farm Factory</button>
+                                            <button id="deployContract" class="btn btn-primary">Initiate Produce Tracker</button>
                                             <span class="success" id="deployContractSuccess"></span>
                                         </div>
                                     </br>
                                 <div class="form-group">
-                                    <label for="inputPrize">Quantity</label>
-                                    <input type="text" class="form-control" id="inputPrize" placeholder="Enter produce quantity">
+                                    <label for="inputQuantity">Quantity</label>
+                                    <input type="text" class="form-control" id="inputQuantity" placeholder="Enter produce quantity">
                                 </div>                                
                                 <div class="form-group">
-                                    <label for="inputDeadline">Harvest Date</label>
-                                    <input type="text" class="form-control" id="inputDeadline" placeholder="Enter harvest date">
+                                    <label for="inputDate">Harvest Date</label>
+                                    <input type="text" class="form-control" id="inputDate" placeholder="Enter harvest date">
                                 </div>
                                 </br>
                                 <div class="input-group">
@@ -123,8 +123,8 @@
                     </div>
                     <div id="collapse2" class="panel-collapse collapse in">
                         <div class="panel-body">
-                            <!-- <div id="competitionId" style="display:none;">-->
-                            <div id="competitionId">
+                            <!-- <div id="produceId" style="display:none;">-->
+                            <div id="produceId">
                                 <table class="table table-striped">
                                     <tbody>
                                         <tr>
@@ -132,15 +132,15 @@
                                         </tr>
                                         <tr>
                                             <td>Id</td>
-                                            <td id="theCompetitionId"></td>
+                                            <td id="theProduceId"></td>
                                         </tr>
                                         <tr>
                                             <td>Quantity</td>
-                                            <td id="thePrize"></td>
+                                            <td id="theQuantity"></td>
                                         </tr>
                                         <tr>
                                             <td>Harvest Date</td>
-                                            <td id="theDeadline"></td>
+                                            <td id="theDate"></td>
                                         </tr>
                                         <tr>
                                             <td>QR Code</td>
@@ -151,11 +151,11 @@
                             </br>
                         </br>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="inputWinner" placeholder="Enter the warehouse address">
+                                    <input type="text" class="form-control" id="inputReceiver" placeholder="Enter the warehouse address">
                                 </div>
                                 <div>
-                                <button id="doPayouts" class="btn btn-primary">Send aggregation to warehouse</button>
-                                <span class="success" id="payoutSuccess"></span>
+                                <button id="doDeliveries" class="btn btn-primary">Send aggregation to warehouse</button>
+                                <span class="success" id="aggregationSuccess"></span>
                             </div>
                                 </br>
                             </div>
@@ -165,14 +165,19 @@
             </div>
         </div>
         <div id="sectionC" class="tab-pane fade">
+            </br>
+            <div class="row row-bordered">
+                <div class="col-xs-10" id="warehouseAccount"></div>
+                <div class="col-xs-10" id="warehouseBalance"></div>
+            </div>
                 <div class="section">
-                        <table id="competitions" class="table table-striped">
-                            <thead id="competitionsheader">
-                                <th>CompetitionId</th>
-                                <th>Prize</th>
-                                <th>Winner</th>
+                        <table id="produces" class="table table-striped">
+                            <thead id="producesHeader">
+                                <th>Produce</th>
+                                <th>QR Codes in IPFS</th>
+                                <th>Farmers</th>
                             </thead>
-                            <tbody id="competitionsbody">
+                            <tbody id="producesbody">
                             </tbody>
                         </table>
                     </div>
@@ -182,10 +187,9 @@
                 <table id="audittrail" class="table table-striped">
                     <thead id="audittrailheader">
                         <th>Action</th>
-                        <th>CompetitionId</th>
+                        <th>ProduceId</th>
                         <th>Actor</th>
                         <th>Data</th>
-                        <th>Cost</th>
                         <th>Timestamp</th>
                     </thead>
                     <tbody id="audittrailbody">
@@ -327,8 +331,6 @@ swal({
     });
 }).catch(swal.noop)
 </script>
-<script src="https://rawgithub.com/smart-on-fhir/client-js/master/dist/fhir-client.js"></script>
 <script src="./javascripts/app.js"></script>
-<script src="./javascripts/fhir-patient.js"></script>
 
 </html>

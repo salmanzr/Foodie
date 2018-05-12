@@ -1,5 +1,5 @@
-var CompetitionFactory = artifacts.require("./CompetitionFactory.sol");
+var ProduceFactory = artifacts.require("./ProduceFactory.sol");
 
 module.exports = function(deployer) {
-  deployer.deploy(CompetitionFactory);
+  deployer.deploy(ProduceFactory);
 };
