@@ -1,7 +1,7 @@
 {
-  "name": "MARIA",
+  "name": "Foodie",
   "version": "0.1.0",
-  "description": "Artificial Intelligence Research Assistant for Medicine",
+  "description": "Food transparency from farmer to consumer",
   "dependencies": {
     "truffle-default-builder": "^2.0.0"
   },
@@ -11,6 +11,6 @@
   "author": "Salman Rahim, ",
   "license": "MIT License",
   "repository": {
-    "url": "https://github.gatech.edu/gt-hit-spring2018/Artificial-Intelligence-Research-Assitant-for-Medicine"
+    "url": "https://github.com/salmanzr/Foodie"
   }
 }
