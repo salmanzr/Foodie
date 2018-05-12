@@ -34,8 +34,8 @@ ipfs config --json API.HTTPHeaders.Access-Control-Allow-Origin '["*"]'
 
 ### 1. Clone repository and install necessary modules
 ```
-git clone https://github.gatech.edu/gt-hit-spring2018/Artificial-Intelligence-Research-Assitant-for-Medicine maria
-cd maria
+git clone https://github.com/salmanzr/Foodie foodie
+cd foodie
 npm install
 ```
 ### 2. Initialize the blockchain with test accounts
