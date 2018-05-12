@@ -4,7 +4,7 @@
 <html>
 
 <head>
-    <title>MARIA</title>
+    <title>Foodie</title>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -22,31 +22,30 @@
         <nav class="navbar navbar-custom navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
-                    <span class="icon-bar"></span><a href="/#/" class="navbar-brand">MARIA ™</a>
+                    <span class="icon-bar"></span><a href="/#/" class="navbar-brand">Foodies</a>
                 </div>
                 <div>
-                    <p class="navbar-text navbar-right" id="loginStatus" style ="display:none">Logged in as <a href="#" class="navbar-link" id="actor">Physician</a>
+                    <p class="navbar-text navbar-right" id="loginStatus" style ="display:none">Logged in as <a href="#" class="navbar-link" id="actor">Farmer</a>
                     </p>
                 </div>
             </div>
         </nav>
     </div>
     <div class="header">
-        <h3>MARIA</h3>
+        <h3>Foodies</h3>
     </div>
     <div class="clear">
         <div class="section">
             </br>
-            <a href="http://localhost:8081/"><img src="https://image.ibb.co/cAAMJH/meraki_0_cropped.png" alt="meraki_0_cropped" border="0"></a>
+            <a href="http://localhost:8081/"><img src="https://raw.githubusercontent.com/salmanzr/Foodie/master/logo.png" alt="meraki_0_cropped" border="0"></a>
             </br>
             </br>
-            <h2>Artificial Intelligence Research Assistant for Medicine</h2>
         </div>
     </div>
     <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#sectionA" id="phy_tab"><i class="fa fa-user-md"></i> Physician</a></li>
-        <li><a data-toggle="tab" href="#sectionB" id="sci_tab"><i class="fa fa-user"></i> Scientist</a></li>
-        <li><a data-toggle="tab" href="#sectionC" id="lea_tab"><i class="fa fa-trophy"></i> Leaderboard</a></li>
+        <li class="active"><a data-toggle="tab" href="#sectionA" id="phy_tab"><i class="fa fa-user-md"></i> Farmer</a></li>
+        <li><a data-toggle="tab" href="#sectionB" id="sci_tab"><i class="fa fa-user"></i> Aggregator</a></li>
+        <li><a data-toggle="tab" href="#sectionC" id="lea_tab"><i class="fa fa-trophy"></i> Warehouse</a></li>
         <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="fa fa-link"></i>  Blockchain View <b class="caret"></b></a>
             <ul class="dropdown-menu">
@@ -54,14 +53,13 @@
                 <li><a data-toggle="tab" href="#dropdown2"><i class="fa fa-cubes"></i> Block Explorer</a></li>
             </ul>
         </li>
-        <li><a data-toggle="tab" href="#sectionD" id="fhir_tab"><i class="fa fa-fire"></i> FHIR Viewer</a></li>
     </ul>
     <div class="tab-content">
         <div id="sectionA" class="tab-pane fade in active">
             </br>
             <div class="row row-bordered">
-                <div class="col-xs-10" id="physicianAccount"></div>
-                <div class="col-xs-10" id="physicianBalance"></div>
+                <div class="col-xs-10" id="farmerAccount"></div>
+                <div class="col-xs-10" id="farmerBalance"></div>
             </div>
             </br>
             <div class="panel-group" id="accordion">
@@ -69,7 +67,7 @@
                     <div class="panel-heading">
                         <h4 class="panel-title">
         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-          Create Competition
+          Create Produce Tracker
         </a>
       </h4>
                     </div>
@@ -77,22 +75,22 @@
                         <div class="panel-body">
                             <div class="demo-content bg-alt">
                                     <div>
-                                            <button id="deployContract" class="btn btn-primary">Initiate Competition Factory</button>
+                                            <button id="deployContract" class="btn btn-primary">Initiate Farm Factory</button>
                                             <span class="success" id="deployContractSuccess"></span>
                                         </div>
                                     </br>
                                 <div class="form-group">
-                                    <label for="inputPrize">Prize</label>
-                                    <input type="text" class="form-control" id="inputPrize" placeholder="Enter Prize Amount">
+                                    <label for="inputPrize">Quantity</label>
+                                    <input type="text" class="form-control" id="inputPrize" placeholder="Enter produce quantity">
                                 </div>                                
                                 <div class="form-group">
-                                    <label for="inputDeadline">Deadline</label>
-                                    <input type="text" class="form-control" id="inputDeadline" placeholder="Enter Deadline">
+                                    <label for="inputDeadline">Harvest Date</label>
+                                    <input type="text" class="form-control" id="inputDeadline" placeholder="Enter harvest date">
                                 </div>
                                 </br>
                                 <div class="input-group">
                                     <span class="input-group-btn">
-                                    <span class="btn btn-primary" onclick="$(this).parent().find('input[type=file]').click();">Submit Dataset</span>
+                                    <span class="btn btn-primary" onclick="$(this).parent().find('input[type=file]').click();">Submit QR Code</span>
                                     <input name="uploaded_file" onchange="$(this).parent().parent().find('.form-control').html($(this).val().split(/[\\|/]/).pop());store();" style="display: none;" type="file" id="source">
                                     </span>
                                     <span class="form-control"></span>
@@ -112,8 +110,8 @@
         <div id="sectionB" class="tab-pane fade">
             </br>
             <div class="row row-bordered">
-                <div class="col-xs-10" id="scientistAccount"></div>
-                <div class="col-xs-10" id="scientistBalance"></div>
+                <div class="col-xs-10" id="aggregatorAccount"></div>
+                <div class="col-xs-10" id="aggregatorBalance"></div>
             </div>
             </br>
             <div class="panel-group" id="accordion">
@@ -121,7 +119,7 @@
                     <div class="panel-heading">
                         <h4 class="panel-title">
         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse2">
-          Competitions
+          List of Produces
         </a>
       </h4>
                     </div>
@@ -139,41 +137,28 @@
                                             <td id="theCompetitionId"></td>
                                         </tr>
                                         <tr>
-                                            <td>Prize</td>
+                                            <td>Quantity</td>
                                             <td id="thePrize"></td>
                                         </tr>
                                         <tr>
-                                            <td>Deadline</td>
+                                            <td>Harvest Date</td>
                                             <td id="theDeadline"></td>
                                         </tr>
                                         <tr>
-                                            <td>Dataset</td>
+                                            <td>QR Code</td>
                                             <td id="hash"></td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </br>
-                                <div class="input-group">
-                                    <span class="input-group-btn">
-                                    <span class="btn btn-primary" onclick="$(this).parent().find('input[type=file]').click();">Submit Model</span>
-                                    <input name="uploaded_file2" onchange="$(this).parent().parent().find('.form-control').html($(this).val().split(/[\\|/]/).pop());store2();" style="display: none;" type="file" id="source2">
-                                    </span>
-                                    <span class="form-control"></span>
-                                </div>
-                                <div>
-                                    <span class="success" id="uploadIpfsSuccess2"></span>
-                                </div>
-                                <div>
-                                    <span class="success" id="uploadDatasetSuccess2"></span>
-                                </div>
+                        </br>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="inputWinner" placeholder="Enter the winner's address">
+                                    <input type="text" class="form-control" id="inputWinner" placeholder="Enter the warehouse address">
                                 </div>
                                 <div>
-                                <button id="doPayouts" class="btn btn-primary">Execute Payouts</button>
+                                <button id="doPayouts" class="btn btn-primary">Send aggregation to warehouse</button>
                                 <span class="success" id="payoutSuccess"></span>
                             </div>
-                                </br>
                                 </br>
                             </div>
                         </div>
@@ -302,23 +287,6 @@
                 </div>
             </div>
         </div>
-        <div id="sectionD" class="tab-pane fade">
-            <div class="section">
-                <div>
-                    <button id="deployContract" class="btn btn-primary">Fetch Sample FHIR Data</button>
-                    <span class="success" id="fetchFHIRDataSuccess"></span>
-                </div>
-
-                <table id="patientData" class="table table-striped">
-                    <thead id="patientDataHeader">
-                        <th>(CSV Column Headers Here, when determined)</th>
-                    </thead>
-                    <tbody>
-                    <tr><td>CSV DATA HERE</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -353,7 +321,7 @@ swal({
   }
 }).then(function (result) {
   swal(
-      'Logged in as Physician',
+      'Logged in as Farmer',
       '',
       'success'
     ).then((result) => {    

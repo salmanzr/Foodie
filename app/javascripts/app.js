@@ -3,7 +3,7 @@ var factoryInstance;
 var defaultGas = 4700000;
 var userAccounts = [];
 
-var scientistAccount, physicianAccount, currentAccount;
+var aggregatorAccount, farmerAccount, warehouseAccount, currentAccount;
 
 var hostName = "localhost";
 var ipfs = window.IpfsApi(hostName, 5001);
@@ -72,7 +72,7 @@ function submitPhysicianDataset(docHash) {
     var prize = $("#inputPrize").val();
     var deadline = $("#inputDeadline").val();
     var deadlineTs = (moment(deadline, "M/D/YYYY").valueOf()) / 1000;
-    factoryInstance.createCompetition.sendTransaction(docHash, deadlineTs, {from:physicianAccount, gas:defaultGas, value:prize}).then(
+    factoryInstance.createCompetition.sendTransaction(docHash, deadlineTs, {from:farmerAccount, gas:defaultGas, value:prize}).then(
         function(txHash) {
             console.log("Submitting dataset hash into competition ", txHash);
             $("#uploadIpfsSuccess").html('<i class="fa fa-check"</i>' + ' IPFS Dataset Hash ' + docHash + " added to IPFS");
@@ -81,28 +81,9 @@ function submitPhysicianDataset(docHash) {
     );
 }
 
-function store2() {
-    const file = document.getElementById('source2').files[0]
-    const reader = new FileReader()
-    reader.onload = function() {
-        var toStore = buffer.Buffer(reader.result);
-        ipfs.add(toStore, function(err, res) {
-            if (err || !res) {
-                return console.error('ipfs add error', err, res)
-            }
-
-            res.forEach(function(file) {
-                console.log('successfully stored', file);
-                submitScientistDataset(file.path);
-            })
-        })
-    }
-    reader.readAsArrayBuffer(file)
-}
-
 function submitScientistDataset(docHash) {
     console.log(docHash);
-    factoryInstance.submitIPFSHash.sendTransaction(docHash, 0, { from: scientistAccount, gas: defaultGas }).then(
+    factoryInstance.submitIPFSHash.sendTransaction(docHash, 0, { from: aggregatorAccount, gas: defaultGas }).then(
         function(txHash) {
             console.log("Submitting dataset hash into competition ", txHash);
             $("#uploadIpfsSuccess2").html('<i class="fa fa-check"</i>' + ' IPFS Predictions Hash ' + docHash + " added to IPFS");
@@ -117,7 +98,7 @@ function display(hash) {
 }
 
 function doPayouts() {
-    factoryInstance.executePayouts.sendTransaction(0, scientistAccount, { from: physicianAccount, gas: defaultGas}).then(
+    factoryInstance.executePayouts.sendTransaction(0, aggregatorAccount, { from: farmerAccount, gas: defaultGas}).then(
         function(txHash) {
             console.log("Doing payouts ", txHash);
             $("#payoutSuccess").html('<i class="fa fa-check"</i>' + ' Payouts ' + txHash + " added to the blockchain");
@@ -192,15 +173,17 @@ window.onload = function() {
         }
         accounts = accs;
 
-        physicianAccount = accounts[0];
+        farmerAccount = accounts[0];
         currentAccount = accounts[0];
-        scientistAccount = accounts[1];
+        aggregatorAccount = accounts[1];
+        warehouseAccount = accounts[2];
         web3.eth.defaultAccount=web3.eth.accounts[0]
 
-        userAccounts.push(physicianAccount);
-        userAccounts.push(scientistAccount);
-        $('#physicianAccount').html('User Account : ' + physicianAccount);
-        $('#physicianBalance').html('User Balance : ' + web3.eth.getBalance(physicianAccount));
+        userAccounts.push(farmerAccount);
+        userAccounts.push(aggregatorAccount);
+        userAccounts.push(warehouseAccount);
+        $('#farmerAccount').html('User Account : ' + farmerAccount);
+        $('#farmerBalance').html('User Balance : ' + web3.eth.getBalance(farmerAccount));
     });
 
     $("#accountSelect").change(function(e) {
@@ -209,10 +192,12 @@ window.onload = function() {
         currentAccountText = $("#accountSelect option:selected").text();
         var fields = currentAccountText.split('-');
         $('#actor').text(fields[1]);
-        if (currentAccount == physicianAccount) {
+        if (currentAccount == farmerAccount) {
             $('#mytabs a[href="#sectionA"]').tab('show');
-        } else if (currentAccount == scientistAccount) {
+        } else if (currentAccount == aggregatorAccount) {
             $('#mytabs a[href="#sectionB"]').tab('show');
+        } else if (currentAccount == warehouseAccount) {
+            $('#mytabs a[href="#sectionC"]').tab('show');
         }
 
     });
@@ -232,15 +217,20 @@ window.onload = function() {
     $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
         var target = $(e.target).attr("href") // activated tab
         if (target == "#sectionA") {
-            $('#actor').text("Physician");
-            currentAccount = physicianAccount;
-            $('#physicianAccount').html('User Account : ' + physicianAccount);
-            $('#physicianBalance').html('User Balance : ' + web3.eth.getBalance(physicianAccount));
+            $('#actor').text("Farmer");
+            currentAccount = farmerAccount;
+            $('#farmerAccount').html('User Account : ' + farmerAccount);
+            $('#farmerBalance').html('User Balance : ' + web3.eth.getBalance(farmerAccount));
         } else if (target == "#sectionB") {
-            $('#actor').text("Scientist");
-            currentAccount = scientistAccount;
-            $('#scientistAccount').html('User Account : ' + scientistAccount);
-            $('#scientistBalance').html('User Balance : ' + web3.eth.getBalance(scientistAccount));
+            $('#actor').text("Aggregator");
+            currentAccount = aggregatorAccount;
+            $('#aggregatorAccount').html('User Account : ' + aggregatorAccount);
+            $('#aggregatorBalance').html('User Balance : ' + web3.eth.getBalance(aggregatorAccount));
+        }  else if (target == "#sectionC") {
+            $('#actor').text("Warehouse");
+            currentAccount = warehouseAccount;
+            $('#warehouseAccount').html('User Account : ' + warehouseAccount);
+            $('#warehouseBalance').html('User Balance : ' + web3.eth.getBalance(warehouseAccount));
         }
 
         if (target = "#dropdown2") {
