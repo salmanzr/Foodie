@@ -72,7 +72,7 @@ function submitQRCode(docHash) {
     factoryInstance.createProduce.sendTransaction(docHash, dateTs, quantity, {from:farmerAccount, gas:defaultGas}).then(
         function(txHash) {
             console.log("Submitting qr code hash with produce ", txHash);
-            $("#uploadIpfsSuccess").html('<i class="fa fa-check"</i>' + ' IPFS Dataset Hash ' + docHash + " added to IPFS");
+            $("#uploadIpfsSuccess").html('<i class="fa fa-check"</i>' + ' QR Code IPFS Hash ' + docHash + " added to IPFS");
             $("#uploadDatasetSuccess").html('<i class="fa fa-check"</i>' + ' Transaction ' + txHash + " added to the blockchain");
         }
     );
@@ -86,7 +86,7 @@ function display(hash) {
 function doDeliveries() {
     factoryInstance.executeDelivery.sendTransaction(0, warehouseAccount, { from: aggregatorAccount, gas: defaultGas}).then(
         function(txHash) {
-            console.log("Doing aggregation and sending to warehouse ", txHash);
+            console.log("Doing aggregation and sending to retailer ", txHash);
             $("#aggregationSuccess").html('<i class="fa fa-check"</i>' + ' Aggregation ' + txHash + " added to the blockchain");
         }
     );
@@ -208,12 +208,12 @@ window.onload = function() {
             $('#farmerAccount').html('User Account : ' + farmerAccount);
             $('#farmerBalance').html('User Balance : ' + web3.eth.getBalance(farmerAccount));
         } else if (target == "#sectionB") {
-            $('#actor').text("Aggregator");
+            $('#actor').text("Warehouse");
             currentAccount = aggregatorAccount;
             $('#aggregatorAccount').html('User Account : ' + aggregatorAccount);
             $('#aggregatorBalance').html('User Balance : ' + web3.eth.getBalance(aggregatorAccount));
         }  else if (target == "#sectionC") {
-            $('#actor').text("Warehouse");
+            $('#actor').text("Retailer");
             currentAccount = warehouseAccount;
             $('#warehouseAccount').html('User Account : ' + warehouseAccount);
             $('#warehouseBalance').html('User Balance : ' + web3.eth.getBalance(warehouseAccount));

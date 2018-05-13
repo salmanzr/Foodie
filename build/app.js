@@ -23175,10 +23175,22 @@ window.__contracts__ = {
       "links": {},
       "address": "0xd7bb9c3ebfb105e60c36520b61c14c8635d60ad8",
       "updated_at": 1526221679599
+    },
+    "1526223931830": {
+      "events": {},
+      "links": {},
+      "address": "0x0dcd044c0f993f143e0a599f1b6183bd3a8dbafd",
+      "updated_at": 1526223939472
+    },
+    "1526227517644": {
+      "events": {},
+      "links": {},
+      "address": "0x230df53b4561f7eb2669738ae1b8a993fef5fc53",
+      "updated_at": 1526227542232
     }
   },
   "schema_version": "0.0.5",
-  "updated_at": 1526221679599
+  "updated_at": 1526227542232
 },
   "ProduceFactory": {
   "contract_name": "ProduceFactory",
@@ -24205,10 +24217,240 @@ window.__contracts__ = {
       "links": {},
       "address": "0xbdedf3b733cef5677c7bd46cf39aba2618e2db0f",
       "updated_at": 1526221679591
+    },
+    "1526223931830": {
+      "events": {
+        "0x78082c50b23f8c1a07102127d186b71b6b6960f0d7922fddd1ca9786d07a1ba8": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "_produceId",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "_person",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "_hash",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "name": "_time",
+              "type": "uint256"
+            }
+          ],
+          "name": "ContractDeployed",
+          "type": "event"
+        },
+        "0xa6cc2ed0712c2b991239c3727cc450dc589ab0091fa2b1da430c07f3316860ca": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "_produceId",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "_person",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "_hash",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "name": "_time",
+              "type": "uint256"
+            }
+          ],
+          "name": "NewProduce",
+          "type": "event"
+        },
+        "0x9d5323ab5e14703359f66b1ea0c17ffe7b8b27a069b6ada61ab4d0679ff9d962": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "_produceId",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "_person",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "_hash",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "name": "_time",
+              "type": "uint256"
+            }
+          ],
+          "name": "NewAggregation",
+          "type": "event"
+        },
+        "0xdaa360f8fbd159fc2c050b567903a9ff75e5174b6fd9186c3b3fd704a91d575a": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "_produceId",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "_person",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "_hash",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "name": "_time",
+              "type": "uint256"
+            }
+          ],
+          "name": "NewFoodDelivery",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xdc1318091c2ab96ab863ecd48ca6409b09e7c2bb",
+      "updated_at": 1526223939466
+    },
+    "1526227517644": {
+      "events": {
+        "0x78082c50b23f8c1a07102127d186b71b6b6960f0d7922fddd1ca9786d07a1ba8": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "_produceId",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "_person",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "_hash",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "name": "_time",
+              "type": "uint256"
+            }
+          ],
+          "name": "ContractDeployed",
+          "type": "event"
+        },
+        "0xa6cc2ed0712c2b991239c3727cc450dc589ab0091fa2b1da430c07f3316860ca": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "_produceId",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "_person",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "_hash",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "name": "_time",
+              "type": "uint256"
+            }
+          ],
+          "name": "NewProduce",
+          "type": "event"
+        },
+        "0x9d5323ab5e14703359f66b1ea0c17ffe7b8b27a069b6ada61ab4d0679ff9d962": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "_produceId",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "_person",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "_hash",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "name": "_time",
+              "type": "uint256"
+            }
+          ],
+          "name": "NewAggregation",
+          "type": "event"
+        },
+        "0xdaa360f8fbd159fc2c050b567903a9ff75e5174b6fd9186c3b3fd704a91d575a": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "_produceId",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "_person",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "_hash",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "name": "_time",
+              "type": "uint256"
+            }
+          ],
+          "name": "NewFoodDelivery",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x4f338682c95106f1a4aaafe0895b427b5b1dbfcd",
+      "updated_at": 1526227542214
     }
   },
   "schema_version": "0.0.5",
-  "updated_at": 1526221679591
+  "updated_at": 1526227542214
 }
 };
 
@@ -24328,7 +24570,7 @@ function submitQRCode(docHash) {
     factoryInstance.createProduce.sendTransaction(docHash, dateTs, quantity, {from:farmerAccount, gas:defaultGas}).then(
         function(txHash) {
             console.log("Submitting qr code hash with produce ", txHash);
-            $("#uploadIpfsSuccess").html('<i class="fa fa-check"</i>' + ' IPFS Dataset Hash ' + docHash + " added to IPFS");
+            $("#uploadIpfsSuccess").html('<i class="fa fa-check"</i>' + ' QR Code IPFS Hash ' + docHash + " added to IPFS");
             $("#uploadDatasetSuccess").html('<i class="fa fa-check"</i>' + ' Transaction ' + txHash + " added to the blockchain");
         }
     );
@@ -24342,7 +24584,7 @@ function display(hash) {
 function doDeliveries() {
     factoryInstance.executeDelivery.sendTransaction(0, warehouseAccount, { from: aggregatorAccount, gas: defaultGas}).then(
         function(txHash) {
-            console.log("Doing aggregation and sending to warehouse ", txHash);
+            console.log("Doing aggregation and sending to retailer ", txHash);
             $("#aggregationSuccess").html('<i class="fa fa-check"</i>' + ' Aggregation ' + txHash + " added to the blockchain");
         }
     );
@@ -24464,12 +24706,12 @@ window.onload = function() {
             $('#farmerAccount').html('User Account : ' + farmerAccount);
             $('#farmerBalance').html('User Balance : ' + web3.eth.getBalance(farmerAccount));
         } else if (target == "#sectionB") {
-            $('#actor').text("Aggregator");
+            $('#actor').text("Warehouse");
             currentAccount = aggregatorAccount;
             $('#aggregatorAccount').html('User Account : ' + aggregatorAccount);
             $('#aggregatorBalance').html('User Balance : ' + web3.eth.getBalance(aggregatorAccount));
         }  else if (target == "#sectionC") {
-            $('#actor').text("Warehouse");
+            $('#actor').text("Retailer");
             currentAccount = warehouseAccount;
             $('#warehouseAccount').html('User Account : ' + warehouseAccount);
             $('#warehouseBalance').html('User Balance : ' + web3.eth.getBalance(warehouseAccount));
