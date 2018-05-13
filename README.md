@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./logo.png" alt="MARIA Logo"/>
+  <img src="./logo.png" alt="Foodies Logo"/>
 </p>
 
 An application that allows foodies to know where exactly their food came from.

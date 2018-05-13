@@ -60,6 +60,7 @@ contract ProduceFactory {
     // Update deliveries.
     //deliveries.push(myProduce.winner);        
     //NewFoodDelivery(_produceId, myProduce.winner, competitionToParticipants[_produceId][myProduce.winner], myProduce.quantity, now);
+    NewAggregation(_produceId, msg.sender, produces[0].qrCode, now);
   }
   
   // Get the qr code of a produce.
